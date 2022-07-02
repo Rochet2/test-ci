@@ -6,7 +6,7 @@ on:
     - cron:  '0 0 * * *'
 
 jobs:
-  _3.3.5-sql:
+  _3-3-5-sql:
     strategy:
       fail-fast: false
       matrix:
