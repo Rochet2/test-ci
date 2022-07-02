@@ -56,6 +56,14 @@ jobs:
         file: /TDB_full.*\.7z/
         path: bin/check_install/bin
         token: ${{ secrets.GITHUB_TOKEN }}
+    - name: Set configs
+      run: |
+        cd bin/check_install/etc
+        cp worldserver.conf.dist worldserver.conf
+        cp bnetserver.conf.dist bnetserver.conf
+        sed "s/127.0.0.1;3306;trinity;trinity;/localhost;3306;root;;/g" worldserver.conf
+        sed "s/127.0.0.1;3306;trinity;trinity;/localhost;3306;root;;/g" bnetserver.conf
+        ./worldserver --update-databases-only
     - name: Build DB
       run: |
         echo "start mysql"
@@ -65,10 +73,6 @@ jobs:
         echo "create databases"
         mysql -uroot -e 'create database test_mysql;'
         cd bin/check_install/bin
-        cp worldserver.conf.dist worldserver.conf
-        cp bnetserver.conf.dist bnetserver.conf
-        sed "s/127.0.0.1;3306;trinity;trinity;/localhost;3306;root;;/g" worldserver.conf
-        sed "s/127.0.0.1;3306;trinity;trinity;/localhost;3306;root;;/g" bnetserver.conf
         ./worldserver --update-databases-only
 
   _3-3-5:
@@ -122,6 +126,14 @@ jobs:
         file: /TDB_full.*\.7z/
         path: bin/check_install/bin
         token: ${{ secrets.GITHUB_TOKEN }}
+    - name: Set configs
+      run: |
+        cd bin/check_install/etc
+        cp worldserver.conf.dist worldserver.conf
+        cp authserver.conf.dist authserver.conf
+        sed "s/127.0.0.1;3306;trinity;trinity;/localhost;3306;root;;/g" worldserver.conf
+        sed "s/127.0.0.1;3306;trinity;trinity;/localhost;3306;root;;/g" authserver.conf
+        ./worldserver --update-databases-only
     - name: Build DB
       run: |
         echo "start mysql"
@@ -131,8 +143,4 @@ jobs:
         echo "create databases"
         mysql -uroot -e 'create database test_mysql;'
         cd bin/check_install/bin
-        cp worldserver.conf.dist worldserver.conf
-        cp authserver.conf.dist authserver.conf
-        sed "s/127.0.0.1;3306;trinity;trinity;/localhost;3306;root;;/g" worldserver.conf
-        sed "s/127.0.0.1;3306;trinity;trinity;/localhost;3306;root;;/g" authserver.conf
         ./worldserver --update-databases-only
