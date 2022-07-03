@@ -138,3 +138,8 @@ jobs:
         cd bin/check_install/bin
         7z x ./*.7z
         ./worldserver --update-databases-only
+    - name: Run SQLs
+      run: |
+        curl http://rochet2.github.io/downloads/Trinity_Jukebox.sql | mysql -uroot world
+        curl http://rochet2.github.io/downloads/Trinity_Portal_Master.sql | mysql -uroot world
+        curl http://rochet2.github.io/downloads/Trinity_Portal_Master_Option.sql | mysql -uroot world
