@@ -140,6 +140,6 @@ jobs:
         ./worldserver --update-databases-only
     - name: Run SQLs
       run: |
-        curl http://rochet2.github.io/downloads/Trinity_Jukebox.sql | mysql -uroot world
-        curl http://rochet2.github.io/downloads/Trinity_Portal_Master.sql | mysql -uroot world
-        curl http://rochet2.github.io/downloads/Trinity_Portal_Master_Option.sql | mysql -uroot world
+        echo 'Trinity_Jukebox' | curl -sSf http://rochet2.github.io/downloads/Trinity_Jukebox.sql | mysql -uroot world
+        echo 'Trinity_Portal_Master' | curl -sSf http://rochet2.github.io/downloads/Trinity_Portal_Master.sql | mysql -uroot world
+        echo 'Trinity_Portal_Master_Option' | curl -sSf http://rochet2.github.io/downloads/Trinity_Portal_Master_Option.sql | mysql -uroot world
