@@ -69,6 +69,7 @@ jobs:
         echo "create databases"
         mysql -uroot -e 'create database test_mysql;'
         cd bin/check_install/bin
+        7z -x *.7z
         ./worldserver --update-databases-only
 
   _3-3-5:
@@ -135,4 +136,5 @@ jobs:
         echo "create databases"
         mysql -uroot -e 'create database test_mysql;'
         cd bin/check_install/bin
+        7z -x *.7z
         ./worldserver --update-databases-only
